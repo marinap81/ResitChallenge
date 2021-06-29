@@ -146,6 +146,7 @@ ON T.STAFFID=SO.STAFFID
 INNER JOIN SUBJECT SU
 ON SU.SUBJCODE = SO.SUBJCODE;
 
+
 --Query 2
 --Write a query which shows the number of enrolments, for each year and semester
 
@@ -167,7 +168,7 @@ group by subjcode, fee
 
 --Task 5
 CREATE VIEW query1 AS 
-SELECT ST.GIVENNAME, ST.SURNAME, SO.SUBJCODE, SU.DESCRIPTION, SO.YEAR, SO.SEMESTER, 
+SELECT ST.GIVENNAME as stugivename, ST.SURNAME as stusurname, SO.SUBJCODE, SU.DESCRIPTION, SO.YEAR, SO.SEMESTER, 
 SO.FEE, T.GIVENNAME, T.SURNAME
 FROM ENROLMENT E 
 INNER JOIN SUBJECTOFFERING SO
@@ -182,3 +183,12 @@ INNER JOIN SUBJECT SU
 ON SU.SUBJCODE = SO.SUBJCODE;
 
 
+--Task 6
+
+--example would be for query 2
+--This query can be cross checked by applying the entry: select count(*) from enrolment.
+-- the count returned from the query should match the sum of the
+--number of enrolments provided from the data.
+
+--Task 3 can be verified by entry: select fee from subjectoffering, this will also display the highest fee 
+--from the list of data provided
