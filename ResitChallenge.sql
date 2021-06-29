@@ -126,4 +126,44 @@ Select * from student
 
 --task 3 completed
 
+--Task 4 Query 1
+--Write a query that shows the student first name and surname, the subject code and
+--description, the subject offering year, semester & fee and the given name and surname of the
+--teacher for that subject offering. 
+
+SELECT ST.GIVENNAME, ST.SURNAME, SO.SUBJCODE, SU.DESCRIPTION, SO.YEAR, SO.SEMESTER, 
+SO.FEE, T.GIVENNAME, T.SURNAME
+FROM ENROLMENT E 
+INNER JOIN SUBJECTOFFERING SO
+ON
+SO.SUBJCODE = E.SUBJCODE AND SO.YEAR = E.YEAR AND SO.SEMESTER = E.SEMESTER  
+                                                                           
+INNER JOIN STUDENT ST
+ON ST.STUDENTID = E.STUDENTID
+INNER JOIN
+TEACHER T
+ON T.STAFFID=SO.STAFFID
+INNER JOIN SUBJECT SU
+ON SU.SUBJCODE = SO.SUBJCODE;
+
+--Query 2
+--Write a query which shows the number of enrolments, for each year and semester
+
+SELECT YEAR, SEMESTER, COUNT(StudentID) as NumEnrolments
+FROM ENROLMENT e
+GROUP BY YEAR, SEMESTER
+ORDER BY YEAR, SEMESTER;
+
+--Query 3
+--Write a query which lists all enrolments which for the subject offering
+-- which has the highest fee. (This query must use a sub-query.)
+
+SELECT subjcode, Fee, Max(Fee) as maximumfee
+From SubjectOffering
+WHERE Fee = (Select Max (Fee) from SubjectOffering)
+group by subjcode, fee
+
+--Task 4 complete
+
+
 
